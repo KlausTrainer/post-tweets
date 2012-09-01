@@ -9,8 +9,9 @@ In order to compile an executable `post-tweets` binary, make sure that you
 have checked out the source
 (`git checkout https://github.com/KlausTrainer/post-tweets.git`) and that
 you have a [Go compiler](http://golang.org/doc/install) available. Having
-`post-tweets.go` in your current shell working directory, building it is as
-simple as entering the following command:
+[post-tweets.go](https://github.com/KlausTrainer/post-tweets/blob/master/post-tweets.go)
+in your current shell working directory, building it is as simple as entering
+the following command:
 
 	go build post-tweets.go
 
