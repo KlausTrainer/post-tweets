@@ -52,20 +52,15 @@ func main() {
 }
 
 func get_tweets(screen_name string, since_id string) (tweets []Tweet, err error) {
-	var (
-		response      *http.Response
-		response_body []byte
-	)
-
 	uri := "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + screen_name + "&include_rts=false&exclude_replies=true&since_id=" + since_id
 
-	response, err = http.Get(uri)
+	response, err := http.Get(uri)
 	if err != nil {
 		return tweets, err
 	}
 	defer response.Body.Close()
 
-	response_body, err = ioutil.ReadAll(response.Body)
+	response_body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return tweets, err
 	}
