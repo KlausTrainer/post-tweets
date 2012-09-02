@@ -60,10 +60,11 @@ func get_tweets(screen_name string, since_id string) (tweets []Tweet, err error)
 	uri := "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + screen_name + "&include_rts=false&exclude_replies=true&since_id=" + since_id
 
 	response, err = http.Get(uri)
-	defer response.Body.Close()
 	if err != nil {
 		return tweets, err
 	}
+	defer response.Body.Close()
+
 	response_body, err = ioutil.ReadAll(response.Body)
 	if err != nil {
 		return tweets, err
@@ -77,11 +78,10 @@ func post_tweet(access_token string, tweet Tweet) (success bool) {
 	post_body, _ := json.Marshal(map[string]string{"text": tweet.Text})
 
 	response, err := http.Post(uri, "application/json", bytes.NewBuffer(post_body))
-	defer response.Body.Close()
-
 	if err != nil || response.StatusCode != 200 {
 		return false
 	}
+	defer response.Body.Close()
 
 	return true
 }
